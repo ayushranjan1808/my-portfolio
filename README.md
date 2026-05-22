@@ -165,8 +165,8 @@ I focus on long-term growth, technical depth, and real implementation skills.
 
 # Connect With Me
 
-- GitHub: https://github.com/YOUR_USERNAME
-- LinkedIn: https://linkedin.com/in/YOUR_USERNAME
+- GitHub: 
+- LinkedIn: https://www.linkedin.com/in/ayush-ranjan-41513a33b
 - Email: ayushranjan1808@gmail.com
 
 ---
