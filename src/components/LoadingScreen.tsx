@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useProgress } from "@react-three/drei";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -10,13 +11,14 @@ interface LoadingScreenProps {
 const logs = [
   "Initializing quantum node ecosystem...",
   "Syncing Bloch sphere vectors [|0⟩ ➔ |1⟩]...",
-  "Running neural layer optimization [LSTM/ARIMA]...",
-  "Loading EcoAction Hub telemetry datasets...",
-  "Mapping engineering matrix...",
-  "Host established. Ready for connection.",
+  "Compiling procedural shader arrays...",
+  "Loading WebGL asset libraries...",
+  "Mapping interactive GSAP timelines...",
+  "Host established. Connection SECURE.",
 ];
 
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
+  const { active, progress: dreiProgress } = useProgress();
   const [currentLogIdx, setCurrentLogIdx] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
@@ -35,6 +37,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
+          if (active) {
+            return 99; // Cap at 99 if R3F assets are still loading
+          }
           clearInterval(progressInterval);
           setTimeout(() => {
             setIsVisible(false);
@@ -50,7 +55,19 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       clearInterval(logInterval);
       clearInterval(progressInterval);
     };
-  }, [onComplete]);
+  }, [onComplete, active]);
+
+  // Trigger completion if R3F completes after progress reached the cap
+  useEffect(() => {
+    if (!active && progress === 99) {
+      setProgress(100);
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+        setTimeout(onComplete, 500);
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [active, progress, onComplete]);
 
   return (
     <AnimatePresence>

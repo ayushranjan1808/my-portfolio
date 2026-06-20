@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navigation from "@/components/Navigation";
-import ParticleSystem from "@/components/ParticleSystem";
+import ThreeCanvas from "@/components/ThreeCanvas";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
@@ -19,13 +19,13 @@ export default function Home() {
 
   return (
     <>
+      {/* Immersive 3D background canvas, mounted immediately to allow shader pre-loading */}
+      <ThreeCanvas />
+
       <LoadingScreen onComplete={() => setLoading(false)} />
 
       {!loading && (
         <div className="relative z-10 w-full flex flex-col min-h-screen selection:bg-brand-cyan/20 selection:text-brand-cyan">
-          {/* High-performance Neural Network Mesh background */}
-          <ParticleSystem />
-
           {/* Floating Navigation Header */}
           <Navigation />
 

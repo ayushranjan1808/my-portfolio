@@ -1,30 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-cyan: #00f5ff;
-  --color-brand-violet: #8b5cf6;
-  --color-brand-emerald: #10b981;
-  --color-dark-bg: #030303;
-  --color-dark-surface: #0a0a0d;
-  --color-dark-card: #0d0d12;
-  --color-dark-border: rgba(255, 255, 255, 0.08);
+  --color-brand-orange: #ea580c;
+  --color-brand-amber: #d97706;
+  --color-brand-copper: #b45309;
+  --color-brand-stone: #1c1917;
 
   --font-sans: var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
 
-  --animate-pulse-slow: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-spin-slow: spin 25s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-glow: glow 3s ease-in-out infinite alternate;
-  --animate-matrix: matrix 20s linear infinite;
 }
 
 :root {
-  --background: #030303;
-  --foreground: #f3f4f6;
-  --accent-cyan: #00f5ff;
-  --accent-violet: #8b5cf6;
-  --accent-emerald: #10b981;
+  --background: #fffbeb;
+  --foreground: #1c1917;
+  --accent-orange: #ea580c;
+  --accent-amber: #d97706;
+  --accent-copper: #b45309;
 }
 
 body {
@@ -34,58 +28,41 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Light Theme */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #030303;
+  background: #f5f5f4;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(28, 25, 23, 0.15);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 245, 255, 0.3);
+  background: rgba(234, 88, 12, 0.45);
 }
 
-/* Glassmorphism utilities */
-.glass-panel {
-  background: rgba(13, 13, 18, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+/* Premium Light Glassmorphism cards */
+.glass-card-premium {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 25px 50px -12px rgba(28, 25, 23, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
-.glass-panel-hover {
+.glass-card-premium-hover {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.glass-panel-hover:hover {
-  background: rgba(13, 13, 18, 0.7);
-  border-color: rgba(0, 245, 255, 0.25);
-  box-shadow: 0 0 30px rgba(0, 245, 255, 0.04);
-}
-
-/* Cinematic Spotlight Hover Glow */
-.spotlight-card {
-  position: relative;
-  overflow: hidden;
-}
-.spotlight-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.06), transparent 40%);
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.spotlight-card:hover::before {
-  opacity: 1;
+.glass-card-premium-hover:hover {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(234, 88, 12, 0.25);
+  box-shadow: 
+    0 30px 60px -10px rgba(234, 88, 12, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
 /* Custom Keyframes */
@@ -94,31 +71,31 @@ body {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-10px) rotate(1deg);
+    transform: translateY(-8px) rotate(0.5deg);
   }
 }
 
 @keyframes glow {
   0% {
-    box-shadow: 0 0 15px rgba(0, 245, 255, 0.15);
+    box-shadow: 0 0 15px rgba(234, 88, 12, 0.15);
   }
   100% {
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 0 35px rgba(217, 119, 6, 0.35);
   }
 }
 
-/* Grid Overlay Backgrounds */
+/* Grid Overlay Backgrounds - Light Version */
 .grid-overlay {
-  background-size: 40px 40px;
+  background-size: 50px 50px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(28, 25, 23, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 25, 23, 0.015) 1px, transparent 1px);
 }
 
 .glow-orb {
   filter: blur(120px);
   pointer-events: none;
-  mix-blend-mode: plus-lighter;
+  mix-blend-mode: multiply;
 }
 
 /* Custom typing cursor */
@@ -128,5 +105,7 @@ body {
 }
 @keyframes blink {
   from, to { color: transparent }
-  50% { color: var(--accent-cyan) }
+  50% { color: var(--accent-orange) }
 }
+
+

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cpu, Code2, Database, GitBranch, Binary, Globe, Blocks } from "lucide-react";
+import { Cpu, Code2, Database, GitBranch, Binary, Globe } from "lucide-react";
 
 interface SkillItem {
   name: string;
@@ -14,7 +14,6 @@ interface SkillCategory {
   id: string;
   title: string;
   icon: React.ReactNode;
-  color: string;
   skills: SkillItem[];
 }
 
@@ -23,7 +22,6 @@ const skillCategories: SkillCategory[] = [
     id: "languages",
     title: "LANGUAGES",
     icon: <Code2 className="w-4 h-4" />,
-    color: "from-brand-cyan to-blue-500",
     skills: [
       { name: "TypeScript", level: "Expert", usage: "Next.js applications, serverless handlers" },
       { name: "Python", level: "Advanced", usage: "ML model notebooks, data pipelines" },
@@ -36,19 +34,17 @@ const skillCategories: SkillCategory[] = [
     id: "frontend",
     title: "FRONTEND FRAMEWORKS",
     icon: <Globe className="w-4 h-4" />,
-    color: "from-brand-cyan to-brand-violet",
     skills: [
       { name: "Next.js (latest)", level: "Expert", usage: "Edge routing, dynamic SSR" },
       { name: "React 19", level: "Expert", usage: "Context, custom hooks, transitions" },
       { name: "Tailwind CSS v4", level: "Expert", usage: "Utility styles, custom themes" },
-      { name: "Framer Motion", level: "Expert", usage: "High-fps spring physics physics" },
+      { name: "Framer Motion", level: "Expert", usage: "High-fps spring physics loops" },
     ],
   },
   {
     id: "backend",
     title: "BACKEND & DATABASES",
     icon: <Database className="w-4 h-4" />,
-    color: "from-brand-violet to-brand-emerald",
     skills: [
       { name: "Node.js / Express", level: "Advanced", usage: "Backend architectures" },
       { name: "FastAPI", level: "Advanced", usage: "High-speed Python inference service" },
@@ -61,7 +57,6 @@ const skillCategories: SkillCategory[] = [
     id: "ai-ml",
     title: "AI / MACHINE LEARNING",
     icon: <Cpu className="w-4 h-4" />,
-    color: "from-brand-cyan to-brand-emerald",
     skills: [
       { name: "LSTM Recurrent Networks", level: "Advanced", usage: "Time-series predictive trends" },
       { name: "ARIMA Forecasting", level: "Advanced", usage: "Linear statistical indicators" },
@@ -73,7 +68,6 @@ const skillCategories: SkillCategory[] = [
     id: "quantum",
     title: "QUANTUM INFORMATION",
     icon: <Binary className="w-4 h-4" />,
-    color: "from-yellow-500 to-orange-500",
     skills: [
       { name: "Bloch Sphere Vectors", level: "Research", usage: "Interactive 3D qubit mapping" },
       { name: "Quantum Gate Math", level: "Research", usage: "Unitary matrices, Hadamard, Pauli" },
@@ -84,7 +78,6 @@ const skillCategories: SkillCategory[] = [
     id: "devops",
     title: "TOOLS & DEVOPS",
     icon: <GitBranch className="w-4 h-4" />,
-    color: "from-brand-emerald to-teal-500",
     skills: [
       { name: "Docker", level: "Advanced", usage: "Containerized environments" },
       { name: "Git / GitHub Actions", level: "Expert", usage: "CI/CD automated testing" },
@@ -101,20 +94,20 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 grid-overlay opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 grid-overlay opacity-25 pointer-events-none" />
 
-      {/* Lighting orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-cyan/5 rounded-full glow-orb" />
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-orange-100/5 rounded-full glow-orb animate-pulse-slow" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col gap-2 mb-16">
-          <span className="text-xs font-mono text-brand-cyan tracking-widest uppercase">// 03. SYSTEM CAPABILITIES</span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+        <div className="flex flex-col gap-2 mb-16 select-none">
+          <span className="text-xs font-mono text-orange-600 font-bold tracking-widest uppercase">// 03. CAPABILITIES</span>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-stone-900 leading-tight">
             Technical Skill Ecosystem
           </h2>
-          <p className="text-gray-400 text-sm max-w-xl mt-2 leading-relaxed">
+          <p className="text-stone-600 text-sm max-w-xl mt-2 leading-relaxed font-semibold">
             I don't believe in arbitrary skill percentage bars. Instead, this ecosystem displays categorized frameworks alongside their specific deployment contexts within my stack.
           </p>
         </div>
@@ -124,7 +117,7 @@ export default function Skills() {
           
           {/* Categories Selector Tabs (Left Col) */}
           <div className="lg:col-span-4 flex flex-col gap-3 font-mono">
-            <span className="text-[10px] text-gray-500 tracking-widest uppercase mb-1">
+            <span className="text-[10px] text-stone-400 tracking-widest uppercase mb-1 font-bold">
               // CLUSTER SELECTOR
             </span>
             {skillCategories.map((category) => {
@@ -133,13 +126,13 @@ export default function Skills() {
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all text-xs font-bold tracking-wider ${
+                  className={`flex items-center gap-3.5 p-4 rounded-2xl border text-left transition-all text-xs font-bold tracking-wider cursor-pointer ${
                     isActive
-                      ? "bg-white/10 border-brand-cyan text-white shadow-[0_0_15px_rgba(0,245,255,0.05)]"
-                      : "bg-white/5 border-white/5 text-gray-400 hover:text-white hover:border-white/15"
+                      ? "bg-white/70 border-orange-500 text-orange-700 shadow-md shadow-orange-500/5"
+                      : "bg-white/30 border-white/50 text-stone-500 hover:text-stone-800 hover:border-stone-300"
                   }`}
                 >
-                  <div className={`p-2 rounded-lg bg-white/5 border border-white/5 ${isActive ? "text-brand-cyan" : "text-gray-500"}`}>
+                  <div className={`p-2 rounded-xl bg-white/60 border border-white/80 shadow-sm ${isActive ? "text-orange-650" : "text-stone-400"}`}>
                     {category.icon}
                   </div>
                   <span>{category.title}</span>
@@ -149,12 +142,12 @@ export default function Skills() {
           </div>
 
           {/* Categories Display Node Panel (Right Col) */}
-          <div className="lg:col-span-8 p-6 md:p-8 rounded-2xl border border-white/5 bg-white/5 glass-panel flex flex-col justify-between min-h-[420px]">
+          <div className="lg:col-span-8 p-6 md:p-8 glass-card-premium rounded-[2rem] flex flex-col justify-between min-h-[420px] text-stone-900 border-white/60">
             
             {/* Header info */}
-            <div className="flex items-center gap-3 pb-6 border-b border-white/5 font-mono text-xs">
-              <span className="text-gray-500">CATEGORY_VIEW:</span>
-              <span className="text-white font-bold bg-white/5 px-2 py-0.5 rounded border border-white/10">
+            <div className="flex items-center gap-3 pb-6 border-b border-stone-200/60 font-mono text-xs text-stone-500">
+              <span>CATEGORY_VIEW:</span>
+              <span className="text-stone-850 font-bold bg-white/70 px-2 py-0.5 rounded-md border border-stone-200 shadow-sm">
                 {currentCategory.title}
               </span>
             </div>
@@ -173,18 +166,18 @@ export default function Skills() {
                   {currentCategory.skills.map((skill, idx) => (
                     <motion.div
                       key={skill.name}
-                      className="p-4 rounded-xl border border-white/5 bg-dark-bg/60 flex flex-col gap-1 hover:border-brand-cyan/20 transition-colors"
+                      className="p-4 rounded-2xl border border-stone-200/80 bg-white/70 flex flex-col gap-1 hover:border-orange-500/35 hover:shadow-sm transition-all"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: idx * 0.05 }}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-mono font-bold text-white text-xs">{skill.name}</span>
-                        <span className="text-[9px] font-mono text-brand-cyan bg-brand-cyan/5 border border-brand-cyan/20 px-1.5 py-0.25 rounded">
+                        <span className="font-mono font-bold text-stone-900 text-xs">{skill.name}</span>
+                        <span className="text-[9px] font-mono font-bold text-orange-700 bg-orange-50 border border-orange-200/50 px-1.5 py-0.25 rounded">
                           {skill.level}
                         </span>
                       </div>
-                      <span className="text-[10px] text-gray-500 leading-normal mt-1.5 font-mono">
+                      <span className="text-[10px] text-stone-400 leading-normal mt-1.5 font-mono font-bold">
                         // {skill.usage}
                       </span>
                     </motion.div>
@@ -194,7 +187,7 @@ export default function Skills() {
             </div>
 
             {/* Simulated compiler stats info footer */}
-            <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between font-mono text-[9px] text-gray-500">
+            <div className="mt-auto pt-6 border-t border-stone-200/60 flex items-center justify-between font-mono text-[9px] text-stone-400 font-bold">
               <span>COMPILING_SYSTEM_METADATA... SUCCESS</span>
               <span>AYUSH_ENV // V2.0</span>
             </div>
